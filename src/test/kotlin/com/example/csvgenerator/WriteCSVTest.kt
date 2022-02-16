@@ -13,7 +13,16 @@ class WriteCSVTest {
         val writer =
             BufferedWriter(FileWriter("/Users/scott.kemp/projects/CSVGenerator/src/test/resources/tickets.csv"))
 
-        val headers = listOf(
+        val csvPrinter = CSVPrinter(writer, DEFAULT.withHeader(*headersForZenfriend()))
+
+        repeat((0..100).count()) { csvPrinter.printRecord(Ticket().toCSVList()) }
+
+        csvPrinter.flush()
+        csvPrinter.close()
+    }
+
+    private fun headersForZenfriend(): Array<String> {
+        return listOf(
             "expiry_date",
             "policy_id",
             "customer_id",
@@ -38,22 +47,33 @@ class WriteCSVTest {
             "allocation_tag",
             "app_of_expiring_policy"
         ).toTypedArray()
+    }
 
-        val csvPrinter = CSVPrinter(
-            writer, DEFAULT.withHeader(*headers)
+    private fun Ticket.toCSVList(): List<String> {
+        return listOf(
+            expiryDate,
+            policyId,
+            customerId,
+            customerName,
+            twoYearFixed,
+            insurer,
+            referrer,
+            postcode,
+            directOrAggregator,
+            specialityCanveyIsland,
+            specialityStormSurge,
+            expiringPolicyNumber,
+            phoneNumber1,
+            phoneNumber2,
+            phoneNumber3,
+            renewalStop,
+            specialityFloodSubsLiability,
+            specialityPendingClaims,
+            specialityPanelDecline,
+            specialityFloodArea,
+            specialityCreWatch,
+            allocationTag,
+            appOfExpiringPolicy
         )
-
-        val tickets = listOf(
-            Ticket(),
-            Ticket(),
-            Ticket(),
-        )
-
-        for (ticket in tickets) {
-            csvPrinter.printRecord(ticket.toCSVList())
-        }
-
-        csvPrinter.flush()
-        csvPrinter.close()
     }
 }
