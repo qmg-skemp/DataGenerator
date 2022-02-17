@@ -7,6 +7,7 @@ import com.example.csvgenerator.AppVersion.V3
 import com.example.csvgenerator.enum.WeightedData.DirectOrAggregator
 import com.example.csvgenerator.enum.WeightedData.DirectOrAggregator.Agg
 import com.example.csvgenerator.enum.WeightedData.FiftyFifty
+import com.example.csvgenerator.enum.WeightedData.FiftyFifty.False
 import com.example.csvgenerator.enum.WeightedData.FiftyFifty.True
 import com.example.csvgenerator.enum.WeightedData.Insurer
 import com.example.csvgenerator.enum.WeightedData.Referrer
@@ -28,12 +29,12 @@ data class Ticket(
     val twoYearFixed: String = weightedValueFrom(YearsFixed.values().toList()),
     val renewalStop: String = weightedValueFrom(RenewalStop.values().toList()),
     val directOrAggregator: String = weightedValueFrom(DirectOrAggregator.values().toList()),
-    val specialityCanveyIsland: String = weightedValueFrom(FiftyFifty.values().toList()),
-    val specialityStormSurge: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val specialityCanveyIsland: String = False.columnValue,
+    val specialityStormSurge: String = False.columnValue,
     val specialityFloodSubsLiability: String = weightedValueFrom(FiftyFifty.values().toList()),
     val specialityPendingClaims: String = weightedValueFrom(FiftyFifty.values().toList()),
-    val specialityPanelDecline: String = weightedValueFrom(FiftyFifty.values().toList()),
-    val specialityFloodArea: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val specialityPanelDecline: String = False.columnValue,
+    val specialityFloodArea: String = False.columnValue,
     val specialityCreWatch: String = weightedValueFrom(FiftyFifty.values().toList()),
     val allocationTag: String =
         when {
