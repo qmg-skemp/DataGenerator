@@ -1,6 +1,5 @@
 package com.example.csvgenerator
 
-import com.example.csvgenerator.enum.Customer
 import org.apache.commons.csv.CSVFormat.DEFAULT
 import org.apache.commons.csv.CSVPrinter
 import org.junit.jupiter.api.Test

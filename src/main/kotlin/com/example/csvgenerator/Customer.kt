@@ -1,4 +1,4 @@
-package com.example.csvgenerator.enum
+package com.example.csvgenerator
 
 enum class Customer(val customerName: String) {
     Jack("Mr Jack Bauer"),

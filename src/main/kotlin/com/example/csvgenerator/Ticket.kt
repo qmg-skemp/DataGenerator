@@ -4,8 +4,6 @@ import com.example.csvgenerator.AllocationTag.AGGREGATOR
 import com.example.csvgenerator.AllocationTag.DIRECT
 import com.example.csvgenerator.AllocationTag.SPECIALITY
 import com.example.csvgenerator.AppVersion.V3
-import com.example.csvgenerator.enum.Customer
-import com.example.csvgenerator.enum.WeightedData
 import com.example.csvgenerator.enum.WeightedData.DirectOrAggregator
 import com.example.csvgenerator.enum.WeightedData.DirectOrAggregator.Agg
 import com.example.csvgenerator.enum.WeightedData.FiftyFifty
@@ -14,9 +12,6 @@ import com.example.csvgenerator.enum.WeightedData.Insurer
 import com.example.csvgenerator.enum.WeightedData.Referrer
 import com.example.csvgenerator.enum.WeightedData.RenewalStop
 import com.example.csvgenerator.enum.WeightedData.YearsFixed
-import java.time.LocalDate.now
-import java.time.Period
-import java.time.format.DateTimeFormatter.ofPattern
 
 data class Ticket(
     val expiryDate: String = randomExpiryDate(),
@@ -58,38 +53,4 @@ enum class AllocationTag(val tagName: String) {
 
 enum class AppVersion {
     V3
-}
-
-private fun randomPhoneNumber(): String = "07${randomNumber(9)}"
-
-private fun randomExpiringPolicyNumber(): String = "35${randomNumber(12)}"
-
-private fun randomNumber(size: Int) = List(size) { (0..9).random() }.joinToString("")
-
-private fun randomPostCode() = "${randomChar((3..4).random())} ${randomChar(3)}".uppercase()
-
-private fun randomCustomerId() = List(11) { (('A'..'Z') + ('0'..'9')).random() }.joinToString("")
-
-private fun randomExpiryDate(): String {
-    return now().plus(Period.ofDays((1..60).random())).format(ofPattern("dd/MM/yyyy"))
-}
-
-private fun randomPolicyId(): String {
-    return "00${randomChar(5)}-${randomChar(4)}-${randomChar(4)}-${randomChar(4)}-${randomChar(12)}"
-}
-
-private fun randomChar(size: Int) =
-    List(size) { (('a'..'z') + ('A'..'Z') + ('0'..'9')).random() }.joinToString("")
-
-// https://blog.jakelee.co.uk/android-selecting-a-weighted-random-item-from-a-list/
-private fun weightedValueFrom(columnValue: List<WeightedData>): String {
-    val randomNumber = Math.random() * 100
-    var probabilityIterator = 0
-    columnValue.forEach {
-        probabilityIterator += it.weighting
-        if (probabilityIterator >= randomNumber) {
-            return it.columnValue
-        }
-    }
-    return columnValue[0].columnValue
 }
