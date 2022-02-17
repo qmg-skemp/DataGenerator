@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.6.3"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("com.diffplug.spotless") version "6.3.0"
     kotlin("jvm") version "1.6.10"
     kotlin("plugin.spring") version "1.6.10"
 }
@@ -19,7 +20,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation ("org.apache.commons:commons-csv:1.8")
+    implementation("org.apache.commons:commons-csv:1.8")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
@@ -32,4 +33,20 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    finalizedBy("spotlessApply")
+}
+
+configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    kotlin {
+        ktfmt()
+        ktlint()
+        trimTrailingWhitespace()
+        toggleOffOn()
+    }
+    kotlinGradle {
+        target("*.gradle.kts")
+        ktlint()
+        endWithNewline()
+        trimTrailingWhitespace()
+    }
 }

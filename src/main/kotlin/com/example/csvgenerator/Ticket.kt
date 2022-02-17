@@ -16,7 +16,6 @@ import com.example.csvgenerator.enum.WeightedData.RenewalStop
 import com.example.csvgenerator.enum.WeightedData.YearsFixed
 import java.time.LocalDate.now
 import java.time.Period
-import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatter.ofPattern
 
 data class Ticket(
@@ -41,12 +40,13 @@ data class Ticket(
     val specialityPanelDecline: String = weightedValueFrom(FiftyFifty.values().toList()),
     val specialityFloodArea: String = weightedValueFrom(FiftyFifty.values().toList()),
     val specialityCreWatch: String = weightedValueFrom(FiftyFifty.values().toList()),
-    val allocationTag: String = when {
-        specialityPendingClaims == True.columnValue -> SPECIALITY.tagName
-        specialityFloodSubsLiability == True.columnValue -> SPECIALITY.tagName
-        directOrAggregator == Agg.columnValue -> AGGREGATOR.tagName
-        else -> DIRECT.tagName
-    },
+    val allocationTag: String =
+        when {
+            specialityPendingClaims == True.columnValue -> SPECIALITY.tagName
+            specialityFloodSubsLiability == True.columnValue -> SPECIALITY.tagName
+            directOrAggregator == Agg.columnValue -> AGGREGATOR.tagName
+            else -> DIRECT.tagName
+        },
     val appOfExpiringPolicy: String = V3.name,
 )
 
@@ -56,7 +56,9 @@ enum class AllocationTag(val tagName: String) {
     DIRECT("Direct")
 }
 
-enum class AppVersion { V3 }
+enum class AppVersion {
+    V3
+}
 
 private fun randomPhoneNumber(): String = "07${randomNumber(9)}"
 
@@ -66,9 +68,7 @@ private fun randomNumber(size: Int) = List(size) { (0..9).random() }.joinToStrin
 
 private fun randomPostCode() = "${randomChar((3..4).random())} ${randomChar(3)}".uppercase()
 
-private fun randomCustomerId() = List(11) {
-    (('A'..'Z') + ('0'..'9')).random()
-}.joinToString("")
+private fun randomCustomerId() = List(11) { (('A'..'Z') + ('0'..'9')).random() }.joinToString("")
 
 private fun randomExpiryDate(): String {
     return now().plus(Period.ofDays((1..60).random())).format(ofPattern("dd/MM/yyyy"))
@@ -78,11 +78,10 @@ private fun randomPolicyId(): String {
     return "00${randomChar(5)}-${randomChar(4)}-${randomChar(4)}-${randomChar(4)}-${randomChar(12)}"
 }
 
-private fun randomChar(size: Int) = List(size) {
-    (('a'..'z') + ('A'..'Z') + ('0'..'9')).random()
-}.joinToString("")
+private fun randomChar(size: Int) =
+    List(size) { (('a'..'z') + ('A'..'Z') + ('0'..'9')).random() }.joinToString("")
 
-//https://blog.jakelee.co.uk/android-selecting-a-weighted-random-item-from-a-list/
+// https://blog.jakelee.co.uk/android-selecting-a-weighted-random-item-from-a-list/
 private fun weightedValueFrom(columnValue: List<WeightedData>): String {
     val randomNumber = Math.random() * 100
     var probabilityIterator = 0
@@ -94,4 +93,3 @@ private fun weightedValueFrom(columnValue: List<WeightedData>): String {
     }
     return columnValue[0].columnValue
 }
-

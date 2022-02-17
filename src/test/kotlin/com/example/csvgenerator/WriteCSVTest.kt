@@ -13,7 +13,9 @@ class WriteCSVTest {
     internal fun `should be able to write to csv file`() {
         val numberOf24Characters = 0..57
         val writer =
-            BufferedWriter(FileWriter("/Users/scott.kemp/projects/CSVGenerator/src/test/resources/tickets.csv"))
+            BufferedWriter(
+                FileWriter("/Users/scott.kemp/projects/CSVGenerator/src/test/resources/tickets.csv")
+            )
 
         val csvPrinter = CSVPrinter(writer, DEFAULT.withHeader(*headersForZenfriend()))
 
@@ -52,7 +54,8 @@ class WriteCSVTest {
             "speciality_cre_watch",
             "allocation_tag",
             "app_of_expiring_policy"
-        ).toTypedArray()
+        )
+            .toTypedArray()
     }
 
     private fun Ticket.toCSVList(): List<String> {
