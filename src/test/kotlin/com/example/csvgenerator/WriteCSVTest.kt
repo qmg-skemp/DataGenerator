@@ -1,5 +1,6 @@
 package com.example.csvgenerator
 
+import com.example.csvgenerator.enum.Customer
 import org.apache.commons.csv.CSVFormat.DEFAULT
 import org.apache.commons.csv.CSVPrinter
 import org.junit.jupiter.api.Test
@@ -10,12 +11,17 @@ class WriteCSVTest {
 
     @Test
     internal fun `should be able to write to csv file`() {
+        val numberOf24Characters = 0..57
         val writer =
             BufferedWriter(FileWriter("/Users/scott.kemp/projects/CSVGenerator/src/test/resources/tickets.csv"))
 
         val csvPrinter = CSVPrinter(writer, DEFAULT.withHeader(*headersForZenfriend()))
 
-        repeat((0..100).count()) { csvPrinter.printRecord(Ticket().toCSVList()) }
+        val shuffleCharacterNames = numberOf24Characters.shuffled()
+        numberOf24Characters.forEach {
+            val findCustomerName = Customer.values()[shuffleCharacterNames[it]].customerName
+            csvPrinter.printRecord(Ticket(customerName = findCustomerName).toCSVList())
+        }
 
         csvPrinter.flush()
         csvPrinter.close()

@@ -9,6 +9,7 @@ import com.example.csvgenerator.enum.WeightedData.DirectOrAggregator
 import com.example.csvgenerator.enum.WeightedData.Insurer
 import com.example.csvgenerator.enum.WeightedData.Referrer
 import com.example.csvgenerator.enum.WeightedData.RenewalStop
+import com.example.csvgenerator.enum.WeightedData.TheOnePercent
 import com.example.csvgenerator.enum.WeightedData.YearsFixed
 import java.time.LocalDate.now
 import java.time.Period
@@ -33,13 +34,13 @@ data class Ticket(
         "agg" -> weightedValueFrom(AllocationTagAggregator.values().toList())
         else -> weightedValueFrom(AllocationTagDirect.values().toList())
     },
-    val specialityCanveyIsland: String = "FALSE",
-    val specialityStormSurge: String = "FALSE",
-    val specialityFloodSubsLiability: String = "FALSE",
-    val specialityPendingClaims: String = "FALSE",
-    val specialityPanelDecline: String = "FALSE",
-    val specialityFloodArea: String = "FALSE",
-    val specialityCreWatch: String = "FALSE",
+    val specialityCanveyIsland: String = weightedValueFrom(TheOnePercent.values().toList()),
+    val specialityStormSurge: String = weightedValueFrom(TheOnePercent.values().toList()),
+    val specialityFloodSubsLiability: String = weightedValueFrom(TheOnePercent.values().toList()),
+    val specialityPendingClaims: String = weightedValueFrom(TheOnePercent.values().toList()),
+    val specialityPanelDecline: String = weightedValueFrom(TheOnePercent.values().toList()),
+    val specialityFloodArea: String = weightedValueFrom(TheOnePercent.values().toList()),
+    val specialityCreWatch: String = weightedValueFrom(TheOnePercent.values().toList()),
     val appOfExpiringPolicy: String = V3.name,
 )
 
