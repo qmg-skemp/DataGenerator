@@ -1,19 +1,23 @@
 package com.example.csvgenerator
 
+import com.example.csvgenerator.AllocationTag.AGGREGATOR
+import com.example.csvgenerator.AllocationTag.DIRECT
+import com.example.csvgenerator.AllocationTag.SPECIALITY
 import com.example.csvgenerator.AppVersion.V3
 import com.example.csvgenerator.enum.Customer
 import com.example.csvgenerator.enum.WeightedData
-import com.example.csvgenerator.enum.WeightedData.AllocationTagAggregator
-import com.example.csvgenerator.enum.WeightedData.AllocationTagDirect
 import com.example.csvgenerator.enum.WeightedData.DirectOrAggregator
+import com.example.csvgenerator.enum.WeightedData.DirectOrAggregator.Agg
+import com.example.csvgenerator.enum.WeightedData.FiftyFifty
+import com.example.csvgenerator.enum.WeightedData.FiftyFifty.True
 import com.example.csvgenerator.enum.WeightedData.Insurer
 import com.example.csvgenerator.enum.WeightedData.Referrer
 import com.example.csvgenerator.enum.WeightedData.RenewalStop
-import com.example.csvgenerator.enum.WeightedData.TheOnePercent
 import com.example.csvgenerator.enum.WeightedData.YearsFixed
 import java.time.LocalDate.now
 import java.time.Period
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatter.ofPattern
 
 data class Ticket(
     val expiryDate: String = randomExpiryDate(),
@@ -30,19 +34,29 @@ data class Ticket(
     val twoYearFixed: String = weightedValueFrom(YearsFixed.values().toList()),
     val renewalStop: String = weightedValueFrom(RenewalStop.values().toList()),
     val directOrAggregator: String = weightedValueFrom(DirectOrAggregator.values().toList()),
-    val allocationTag: String = when (directOrAggregator) {
-        "agg" -> weightedValueFrom(AllocationTagAggregator.values().toList())
-        else -> weightedValueFrom(AllocationTagDirect.values().toList())
+    val specialityCanveyIsland: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val specialityStormSurge: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val specialityFloodSubsLiability: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val specialityPendingClaims: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val specialityPanelDecline: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val specialityFloodArea: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val specialityCreWatch: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val allocationTag: String = when {
+        specialityPendingClaims == True.columnValue -> SPECIALITY.tagName
+        specialityFloodSubsLiability == True.columnValue -> SPECIALITY.tagName
+        directOrAggregator == Agg.columnValue -> AGGREGATOR.tagName
+        else -> DIRECT.tagName
     },
-    val specialityCanveyIsland: String = weightedValueFrom(TheOnePercent.values().toList()),
-    val specialityStormSurge: String = weightedValueFrom(TheOnePercent.values().toList()),
-    val specialityFloodSubsLiability: String = weightedValueFrom(TheOnePercent.values().toList()),
-    val specialityPendingClaims: String = weightedValueFrom(TheOnePercent.values().toList()),
-    val specialityPanelDecline: String = weightedValueFrom(TheOnePercent.values().toList()),
-    val specialityFloodArea: String = weightedValueFrom(TheOnePercent.values().toList()),
-    val specialityCreWatch: String = weightedValueFrom(TheOnePercent.values().toList()),
     val appOfExpiringPolicy: String = V3.name,
 )
+
+enum class AllocationTag(val tagName: String) {
+    SPECIALITY("Speciality"),
+    AGGREGATOR("Aggregator"),
+    DIRECT("Direct")
+}
+
+enum class AppVersion { V3 }
 
 private fun randomPhoneNumber(): String = "07${randomNumber(9)}"
 
@@ -57,7 +71,7 @@ private fun randomCustomerId() = List(11) {
 }.joinToString("")
 
 private fun randomExpiryDate(): String {
-    return now().plus(Period.ofDays((1..60).random())).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+    return now().plus(Period.ofDays((1..60).random())).format(ofPattern("dd/MM/yyyy"))
 }
 
 private fun randomPolicyId(): String {
@@ -67,8 +81,6 @@ private fun randomPolicyId(): String {
 private fun randomChar(size: Int) = List(size) {
     (('a'..'z') + ('A'..'Z') + ('0'..'9')).random()
 }.joinToString("")
-
-enum class AppVersion { V3 }
 
 //https://blog.jakelee.co.uk/android-selecting-a-weighted-random-item-from-a-list/
 private fun weightedValueFrom(columnValue: List<WeightedData>): String {

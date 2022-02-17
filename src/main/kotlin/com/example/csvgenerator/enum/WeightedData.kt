@@ -38,9 +38,9 @@ sealed interface WeightedData {
         PeHomeSelect("pe_home_select", 86)
     }
 
-    enum class TheOnePercent(override val columnValue: String, override val weighting: Int = 0) : WeightedData {
-        True("TRUE", 1),
-        False("FALSE", 99),
+    enum class FiftyFifty(override val columnValue: String, override val weighting: Int = 0) : WeightedData {
+        True("TRUE", 50),
+        False("FALSE", 50),
     }
 
     enum class Referrer(override val columnValue: String, override val weighting: Int = 0) : WeightedData {
