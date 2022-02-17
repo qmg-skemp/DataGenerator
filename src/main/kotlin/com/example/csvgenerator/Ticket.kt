@@ -2,18 +2,17 @@ package com.example.csvgenerator
 
 import com.example.csvgenerator.AppVersion.V3
 import com.example.csvgenerator.enum.Customer
-import com.example.csvgenerator.enum.Insurer
-import com.example.csvgenerator.enum.Referrer
 import com.example.csvgenerator.enum.WeightedData
 import com.example.csvgenerator.enum.WeightedData.AllocationTagAggregator
 import com.example.csvgenerator.enum.WeightedData.AllocationTagDirect
 import com.example.csvgenerator.enum.WeightedData.DirectOrAggregator
+import com.example.csvgenerator.enum.WeightedData.Insurer
+import com.example.csvgenerator.enum.WeightedData.Referrer
 import com.example.csvgenerator.enum.WeightedData.RenewalStop
 import com.example.csvgenerator.enum.WeightedData.YearsFixed
 import java.time.LocalDate.now
 import java.time.Period
 import java.time.format.DateTimeFormatter
-
 
 data class Ticket(
     val expiryDate: String = randomExpiryDate(),
@@ -25,8 +24,8 @@ data class Ticket(
     val phoneNumber1: String = randomPhoneNumber(),
     val phoneNumber2: String = "",
     val phoneNumber3: String = "",
-    val insurer: String = Insurer.values().random().insurer,
-    val referrer: String = Referrer.values().random().referrer,
+    val insurer: String = weightedValueFrom(Insurer.values().toList()),
+    val referrer: String = weightedValueFrom(Referrer.values().toList()),
     val twoYearFixed: String = weightedValueFrom(YearsFixed.values().toList()),
     val renewalStop: String = weightedValueFrom(RenewalStop.values().toList()),
     val directOrAggregator: String = weightedValueFrom(DirectOrAggregator.values().toList()),
@@ -70,6 +69,7 @@ private fun randomChar(size: Int) = List(size) {
 
 enum class AppVersion { V3 }
 
+//https://blog.jakelee.co.uk/android-selecting-a-weighted-random-item-from-a-list/
 private fun weightedValueFrom(columnValue: List<WeightedData>): String {
     val randomNumber = Math.random() * 100
     var probabilityIterator = 0
@@ -79,6 +79,6 @@ private fun weightedValueFrom(columnValue: List<WeightedData>): String {
             return it.columnValue
         }
     }
-    return " "
+    return columnValue[0].columnValue
 }
 
