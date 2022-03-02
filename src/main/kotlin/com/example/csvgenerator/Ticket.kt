@@ -13,6 +13,7 @@ import com.example.csvgenerator.enum.WeightedData.Insurer
 import com.example.csvgenerator.enum.WeightedData.Referrer
 import com.example.csvgenerator.enum.WeightedData.RenewalStop
 import com.example.csvgenerator.enum.WeightedData.YearsFixed
+import com.example.csvgenerator.enum.the
 
 data class Ticket(
     val expiryDate: String = randomExpiryDate(),
@@ -24,18 +25,18 @@ data class Ticket(
     val phoneNumber1: String = randomPhoneNumber(),
     val phoneNumber2: String = "",
     val phoneNumber3: String = "",
-    val insurer: String = weightedValueFrom(Insurer.values().toList()),
-    val referrer: String = weightedValueFrom(Referrer.values().toList()),
-    val twoYearFixed: String = weightedValueFrom(YearsFixed.values().toList()),
-    val renewalStop: String = weightedValueFrom(RenewalStop.values().toList()),
-    val directOrAggregator: String = weightedValueFrom(DirectOrAggregator.values().toList()),
+    val insurer: String = weightedValueFrom(the<Insurer>()),
+    val referrer: String = weightedValueFrom(the<Referrer>()),
+    val twoYearFixed: String = weightedValueFrom(the<YearsFixed>()),
+    val renewalStop: String = weightedValueFrom(the<RenewalStop>()),
+    val directOrAggregator: String = weightedValueFrom(the<DirectOrAggregator>()),
     val specialityCanveyIsland: String = False.columnValue,
     val specialityStormSurge: String = False.columnValue,
-    val specialityFloodSubsLiability: String = weightedValueFrom(FiftyFifty.values().toList()),
-    val specialityPendingClaims: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val specialityFloodSubsLiability: String = weightedValueFrom(the<FiftyFifty>()),
+    val specialityPendingClaims: String = weightedValueFrom(the<FiftyFifty>()),
     val specialityPanelDecline: String = False.columnValue,
     val specialityFloodArea: String = False.columnValue,
-    val specialityCreWatch: String = weightedValueFrom(FiftyFifty.values().toList()),
+    val specialityCreWatch: String = weightedValueFrom(the<FiftyFifty>()),
     val allocationTag: String =
         when {
             specialityPendingClaims == True.columnValue -> SPECIALITY.tagName

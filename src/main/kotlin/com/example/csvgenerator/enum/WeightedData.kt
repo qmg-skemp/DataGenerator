@@ -91,3 +91,7 @@ sealed interface WeightedData {
         BackOffice("BACKOFFICE")
     }
 }
+
+inline fun <reified T : Enum<T>> the(): List<T> {
+    return enumValues<T>().toList()
+}
