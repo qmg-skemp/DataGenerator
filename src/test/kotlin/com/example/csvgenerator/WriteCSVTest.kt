@@ -4,13 +4,15 @@ import org.apache.commons.csv.CSVFormat.DEFAULT
 import org.apache.commons.csv.CSVPrinter
 import org.junit.jupiter.api.Test
 import java.io.BufferedWriter
+import java.io.File
 import java.io.FileWriter
 
 class WriteCSVTest {
 
     @Test
     internal fun `should be able to write to csv file`() {
-        val numberOf24Characters = 0..57
+        val customerNames = File("src/test/resources/people.txt").readLines().shuffled()
+
         val writer =
             BufferedWriter(
                 FileWriter("/Users/scott.kemp/projects/CSVGenerator/src/test/resources/tickets.csv")
@@ -18,10 +20,11 @@ class WriteCSVTest {
 
         val csvPrinter = CSVPrinter(writer, DEFAULT.withHeader(*headersForZenfriend()))
 
-        val shuffleCharacterNames = numberOf24Characters.shuffled()
-        numberOf24Characters.forEach {
-            val findCustomerName = Customer.values()[shuffleCharacterNames[it]].customerName
-            csvPrinter.printRecord(Ticket(customerName = findCustomerName).toCSVList())
+        (0..100).forEach {
+            csvPrinter.printRecord(
+                if (it < customerNames.size) Ticket(customerName = customerNames[it].trim()).toCSVList()
+                else Ticket().toCSVList()
+            )
         }
 
         csvPrinter.flush()
