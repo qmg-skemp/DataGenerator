@@ -13,14 +13,14 @@ sealed interface WeightedData {
 
     enum class DirectOrAggregator(override val columnValue: String, override val weighting: Int) :
         WeightedData {
-        Agg("agg", 90),
-        Direct("direct", 10)
+        Agg("Source_aggregator", 90),
+        Direct("Source_direct", 10)
     }
 
     enum class RenewalStop(override val columnValue: String, override val weighting: Int) :
         WeightedData {
-        Yes("yes", 98),
-        No("no", 2)
+        Yes("Home_renewal_yes", 98),
+        No("Home_renewal_no", 2)
     }
 
     enum class AllocationTagAggregator(

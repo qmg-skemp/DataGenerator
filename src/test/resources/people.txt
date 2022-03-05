@@ -153,3 +153,89 @@ Mr Mickey Conway
 Mr Johnny Dio
 Mr Tony Stacks
 Mr Jimmy Two Times
+Mr Tony Soprano
+Mrs Jennifer Melfi
+Miss Carmela Soprano
+Mr Christopher Moltisanti
+Mr Corrado Soprano
+Mr Salvatore Bonpensiero
+Mr Silvio Dante
+Mr Anthony Soprano Jr.
+Mr Meadow Soprano
+Mr Paulie Gualtieri
+Mr Livia Soprano
+Mr Adriana La Cerva
+Mr Richie Aprile
+Ms Janice Soprano
+Mr Artie Bucco
+Mrs Charmaine Bucco
+Mr Ralph Cifaretto
+Mr Eugene Pontecorvo
+Mr Robert Baccalieri
+Mr Furio Giunta
+Mr Johnny Sack
+Mr Vito Spatafore
+Mr Tony Blundetto
+Mrs Rosalie Aprile
+Miss Patsy Parisi
+Miss Gabriella Dante
+Ms Angie Bonpensiero
+Mr Butch DeConcini
+Mr Benny Fazio
+Mr Paulie Germani
+Miss Carmine Lupertazzi
+Mr Carlo Gervasi
+Mr Phil Leotardo
+Dr Charles Francis Xavier
+Mr Scott Summers
+Mr Robert Louis Drake
+Mr Henry Philip McCoy
+Mr Warren Kenneth Worthington
+Ms Jean Elaine Grey
+Mr Hugo Stiglitz
+Mr Donny Donowitz
+Ms Shosanna Dreyfus
+Mr Aldo Raine
+Mr Fredrick Zoller
+Mr Archie Hicox
+Ms Bridget von Hammersmark
+Mr Perrier LaPadite
+Miss Nicky Parsons
+Mr Jason Bourne
+Miss Pamela Landy
+Ms Marie Kreutz
+Mr Aaron Cross
+Mr Randolph Bentley
+Mr Ward Abbott
+Dr Alan Grant
+Dr Ellie Sattler
+Mr Robert Muldoon
+Dr Ian Malcolm
+Mr John Hammond
+Mr Donald Gennaro
+Mr Lex Murphy
+Dr Henry Wu
+Mr Tim Murphy
+Mr John Arnold
+Dr Lewis Dodgson
+Mr Dennis Nedry
+Dr Harding
+Dr Marty Gutierrez
+Mr Ed Regis
+Mr Douglas Quaid
+Mr John Kimble
+Mr James Gordon
+Mr Bruce Wayne
+Mr Alfred Pennyworth
+Mr Richard Grayson
+Mr Oswald Cobblepot
+Mr Jack Napier
+Mr Harvey Dent
+Mr Anton Chigurh
+Mr Llewelyn Moss
+Mr Carson Wells
+Mr Ed Tom Bell
+Ms Jo Davidson
+Mrs Martha Hudson
+Miss Helena Ravenclaw
+Mrs Carla Jean Moss

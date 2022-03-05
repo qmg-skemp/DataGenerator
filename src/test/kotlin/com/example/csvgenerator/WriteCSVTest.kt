@@ -15,7 +15,9 @@ class WriteCSVTest {
 
         val writer =
             BufferedWriter(
-                FileWriter("/Users/scott.kemp/projects/CSVGenerator/src/test/resources/tickets.csv")
+                FileWriter(
+                    "/Users/scott.kemp/projects/CSVGenerator/src/test/resources/dummyData100.csv"
+                )
             )
 
         val csvPrinter = CSVPrinter(writer, DEFAULT.withHeader(*headersForZenfriend()))
@@ -23,7 +25,7 @@ class WriteCSVTest {
         (0..100).forEach {
             csvPrinter.printRecord(
                 if (it < customerNames.size) Ticket(customerName = customerNames[it].trim()).toCSVList()
-                else Ticket().toCSVList()
+                else Ticket(customerName = customerNames.random().trim()).toCSVList()
             )
         }
 
