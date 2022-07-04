@@ -127,7 +127,7 @@ Mr Johnny Ola
 Mr Carlo Rizzi
 Mr Louie Russo
 Mr Hyman Roth
-Mrs Virgil Sollozzo
+Mr Virgil Sollozzo
 Mr Joey Zasa
 Mr Amerigo Bonasera
 Mr Cardinal Lamberto
@@ -239,3 +239,23 @@ Ms Jo Davidson
 Mrs Martha Hudson
 Miss Helena Ravenclaw
 Mrs Carla Jean Moss
+Mr Samuel Bellamy
+Mr Edward Teach
+Miss Anne Bonny
+Mr Bartholomew Roberts
+Mr Benjamin Hornigold
+Mr Edward Low
+Mr William Kidd
+Mr Richard Worley
+Mr Henry Morgan
+Mr Gordon Banks
+Mr George Cohen
+Mr Jack Charlton
+Mr Bobby Moore
+Mr Ray Wilson
+Mr Nobby Stiles
+Mr Alan Ball
+Mr Bobby Charlton
+Mr Martin Peters	
+Mr Geoff Hurst
+Mr Roger Hunt
